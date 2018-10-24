@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if指令</title>
+</head>
+<body>
+    <div id="app">
+        <!-- isClick == 1表示已点击 0表示未点击 -->
+        <span v-if="isClick == 1?true:false">你好，我是李洋</span>
+        <span v-else>请点击这里</span>
+
+        <br>
+        <span v-if="letter == 'A'">A</span>
+        <span v-else-if="letter == 'B'">B</span>
+        <span v-else="letter == 'C'">C</span>
+
+        <br>
+        <span v-show="isShow">SHOW</span>
+        <span v-show="!isShow">NOT SHOW</span>
+    </div>
+    <script src="vue.min.js"></script>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                isClick: 1,
+                letter: "A",
+                isShow: true
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for指令</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(com, index) in companies">{{com}}--{{index+1}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="(val,key,index) in object">{{val}}--{{key}}--{{index+1}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="obj in arrSort">
+                <!-- <div v-for="(val,key) in obj">{{val}}--{{key}}</div> -->
+                {{obj.name}}--{{obj.age}}--{{obj.company}}
+            </li>
+        </ul>
+    </div>
+
+    <script src="vue.min.js"></script>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                companies: ['百度', '阿里巴巴', '腾讯', '滴滴'],
+                object: {
+                    name: 'liyang',
+                    age: '18',
+                    company: 'baidu'
+                },
+                arr: [{
+                    name: 'zs',
+                    age: 28,
+                    company: 'baidu'
+                }, {
+                    name: 'lisi',
+                    age: 20,
+                    company: 'alibaba'
+                }, {
+                    name: 'ww',
+                    age: 30,
+                    company: 'tencent'
+                }]
+            },
+            computed: {
+                arrSort() {
+                    return this.arr.sort(function (a, b) {
+                        return a.age - b.age;
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
