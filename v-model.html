@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model指令</title>
+</head>
+<body>
+    <div id="app">
+        <form action="">
+                用户名: <input type="text" v-model="username">
+                <h4>用户名是：{{username}}</h4>
+
+                用户名lazy: <input type="text" v-model.lazy="username">
+                <h4>用户名是：{{username}}</h4>
+
+                用户名trim: <input type="text" v-model.trim="username">
+                <h4>用户名是：{{username}}</h4>
+
+                年龄:<input type="number" v-model.number="age">
+                <h4>用户的年龄是:{{age}}</h4>
+
+                性别: <input type="radio" value="男" v-model="sex">男
+                      <input type="radio" value="女" v-model="sex">女
+                <h4>用户的性别是:{{sex}}</h4>
+
+                爱好:<input type="checkbox" value="篮球" v-model="hobbys">篮球
+                    <input type="checkbox" value="足球" v-model="hobbys">足球
+                    <input type="checkbox" value="排球" v-model="hobbys">排球
+                <h4>用户的爱好是:{{hobbys}}</h4>
+
+                公司:<select name="" id="" v-model="company">
+                        <option value="百度">百度</option>
+                        <option value="百度">阿里巴巴</option>
+                        <option value="百度">腾讯</option>
+                    </select>
+                <h4>用户的公司是:{{company}}</h4>
+
+                <textarea value="自我介绍" cols="30" rows="10" id="" v-model="description"></textarea>
+                <h4>我的描述是：{{description}}</h4>
+            </form>
+    </div>
+
+    <script src=vue.min.js></script>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                username: '',
+                sex: '',
+                hobbys:[],
+                company:'',
+                description:'',
+                age:''
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on指令</title>
+    <style>
+        #div1{
+            width: 400px;
+            height: 400px;
+            background: red;
+        }
+        #div2{
+            width: 200px;
+            height: 200px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click.once="clickhandler(2,$event)">btn</button> <!-- 相当于函数调用 2是实参  -->
+        <h1 v-text="num"></h1>
+        <button v-on="{mousedown: doThis, mouseup: doThat}">btn2</button>
+
+        <div id="div1" @click="clickDiv1">
+            <div id="div2" @click.stop="clickDiv2($event)"></div>
+        </div>
+
+        <a href="http://www.baidu.com" @click.prevent="baidu($event)">baidu</a>
+
+        <input type="text" @keyup.13="keyuphandler($event)">
+    </div>
+
+
+    <script src="vue.min.js"></script>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            },
+            methods: {//相当于函数声明
+                clickhandler(n,e){
+                    this. num += n;
+                    console.log(e);
+                },
+                doThis(e){
+                    console.log('doThis');
+                },
+                doThat(e){
+                    console.log('doThat');
+                },
+                clickDiv1(){
+                    console.log('div1');
+                },
+                clickDiv2(e){
+                    console.log('div2');
+                    // e.stopPropagation();
+                },
+                baidu(e){
+                    // e.preventDefault();
+                },
+                keyuphandler(e){
+
+                        console.log('hahahahh');
+
+
+                }
+            }
+        });
+    </script>
+</body>
+</html>
