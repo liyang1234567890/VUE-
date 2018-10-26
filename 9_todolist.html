@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todolist</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <td>选择</td>
+                    <td>商品名称</td>
+                    <td>商品价格</td>
+                    <td>删除</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="product in productList ">
+                    <td><input type="checkbox"></td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>删除 </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="vue.js"></script>
+    <script src="jquery-3.3.1.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',n29
+                },{
+                    name: '裤子',
+                    price: 229
+                },{
+                    name: '鞋',
+                    price: 219
+                },{
+                    name: '帽子',
+                    price: 69
+                },{
+                    name: '围巾',
+                    price: 49
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
