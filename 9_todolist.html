@@ -7,14 +7,18 @@
     <title>todolist</title>
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
     <style>
-
+        #app .red{
+            background: #f00;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <table>
+        <h1 class="text-center">todolist</h1>
+        <hr>
+        <table class="table table-striped text-center table-bordered table-hover">
             <thead>
-                <tr>
+                <tr class="warning">
                     <td>选择</td>
                     <td>商品名称</td>
                     <td>商品价格</td>
@@ -22,11 +26,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="product in productList ">
+                <tr v-for="product in productList" @click="select(product)" :class="{red:product.isSelected}">
                     <td><input type="checkbox"></td>
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
-                    <td>删除 </td>
+                    <td><button @click.stop type="button" class="btn btn-warning glyphicon glyphicon-remove btn-xs"></button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs">删除选中</button>
+                    </td>
+                    <td colspan="3">
+                        总价:{{csum}}元
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -38,20 +50,62 @@
 
     <script>
         new Vue({
-            el: '#app',n29
+            el: '#app',
+            data: {
+                productList:[{
+                    name: '衣服',
+                    price: 129,
+                    isSelected: false
                 },{
                     name: '裤子',
-                    price: 229
+                    price: 229,
+                    isSelected: false
                 },{
                     name: '鞋',
-                    price: 219
+                    price: 219,
+                    isSelected: false
                 },{
                     name: '帽子',
-                    price: 69
+                    price: 69,
+                    isSelected: false
                 },{
                     name: '围巾',
-                    price: 49
-                }]
+                    price: 49,
+                    isSelected: false
+                }],
+                sum: 0
+            },
+            methods:{
+                select(product){
+                    product.isSelected = !product.isSelected;
+                    // if(product.isSelected){
+                    //     this.sum += product.price;
+                    // }else{
+                    //     this.sum -= product.price;
+                    // }
+                    this.getSum();
+                },
+                getSum(){
+                    // this.sum = 0;
+                    let temp = 0;
+                    this.productList.forEach((item,index)=>{
+                        if(item.isSelected){
+                            temp += item.price;
+                         }//每次都从0开始遍历 不需要再判断减
+                    });
+                    return temp;
+                }
+            },
+            computed: {
+                csum(){
+                    let temp = 0;
+                    this.productList.forEach((item,index)=>{
+                        if(item.isSelected){
+                            temp += item.price;
+                        }
+                });
+                return temp;
+                }
             }
         });
     </script>
