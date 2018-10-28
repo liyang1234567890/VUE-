@@ -26,11 +26,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="product in productList" @click="select(product)" :class="{red:product.isSelected}">
+                <tr v-for="(product,index) in productList" @click="select(product)" :class="{red:product.isSelected}">
                     <td><input type="checkbox"></td>
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
-                    <td><button @click.stop type="button" class="btn btn-warning glyphicon glyphicon-remove btn-xs"></button></td>
+                    <td><button @click.stop="delProduct(index)" type="button" class="btn btn-warning glyphicon glyphicon-remove btn-xs"></button></td>
                 </tr>
                 <tr>
                     <td>
@@ -94,6 +94,9 @@
                          }//每次都从0开始遍历 不需要再判断减
                     });
                     return temp;
+                },
+                delProduct(index){
+                    this.productList.splice(index,1);
                 }
             },
             computed: {
